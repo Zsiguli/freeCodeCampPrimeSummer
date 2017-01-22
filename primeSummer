@@ -1,0 +1,38 @@
+'use strict'
+var generatedPrimeSequence = [];
+var sequenceCap;
+
+function cashingTheSequenceCap (val) {
+  sequenceCap = val;
+}
+
+function generateThePrimeSequence () {
+  generatedPrimeSequence = [2];
+  var actualNumber = 3;
+    for (var i = 1; actualNumber <= sequenceCap; i++) {
+      if (isDivisibleWithDivisor(actualNumber)) {
+      generatedPrimeSequence[i] = actualNumber;
+    }
+    actualNumber += 1;
+  }
+}
+
+function isDivisibleWithDivisor (dividend) {
+  for (var i = 0; i < generatedPrimeSequence.length; i++) {
+    if (dividend%generatedPrimeSequence[i] === 0) {
+      return false;
+    } else if (i === generatedPrimeSequence.length-1) {
+      return true;
+    }
+  }
+}
+
+function sumPrimes(num) {
+  cashingTheSequenceCap(num);
+  generateThePrimeSequence();
+  return generatedPrimeSequence.reduce(function (a, b) {
+           return a + b;
+  });
+}
+
+sumPrimes(10);
